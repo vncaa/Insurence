@@ -24,7 +24,6 @@ while (running)
             running = false;
             break;
         default:
-            Console.WriteLine("Nespravna volba. Zkuste prosim znovu.");
             break;
     }
 }

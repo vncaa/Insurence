@@ -16,7 +16,7 @@ namespace Insurence
         public void ShowMenu()
         {
             Console.Clear();
-            Console.WriteLine("Vitejte v evidence pojisteni.");
+            Console.WriteLine("Vitejte v evidenci pojisteni.");
             Console.WriteLine("----------------------------");
             Console.WriteLine();
             Console.WriteLine("1 - Pridani noveho pojistence");
@@ -31,15 +31,16 @@ namespace Insurence
         //pridani noveho uzivatele do listu
         public void AddNewUser()
         {
+
             Console.Clear();
             Console.Write("Zadejte sve krestni jmeno: ");
             string firstName = Console.ReadLine();
             Console.Write("Zadejte sve prijmeni: ");
             string lastName = Console.ReadLine();
-            Console.Write("Zadejte svuj vek: ");
-            int age = int.Parse(Console.ReadLine());
-            Console.Write("Zadejte sve telefonni cislo: ");
-            int phoneNumber = int.Parse(Console.ReadLine());
+            int age = ValidAge(); //funkce pro overeni spravnosti veku
+            int phoneNumber = ValidPhoneNumber(); //funkce pro overeni spravnosti tel. cisla
+            
+            
 
 
             Users.Add(new User(firstName, lastName, age, phoneNumber));
@@ -61,7 +62,6 @@ namespace Insurence
         public void SearchUser()
         {
             bool exit = false;
-            bool numberChange = true;
             User userToEdit = null;
 
             while (!exit)
@@ -111,11 +111,9 @@ namespace Insurence
             string choice = Console.ReadLine();
             if(choice == "ano")
             {
-                Console.Write("Zadejte nove telefonni cislo: ");
-                int newPhoneNumber = int.Parse(Console.ReadLine());
-                user.PhoneNumber = newPhoneNumber;
-                Console.WriteLine("Telefonni cislo bylo zmeneno.");
+                ValidPhoneNumber();
             }
+            Console.WriteLine("Telefonni cislo bylo zmeneno.");
         }
         public void DeleteUser(User user) //smazani pojistence
         {
@@ -128,5 +126,47 @@ namespace Insurence
                 Console.WriteLine("Pojistenec byl odstranen.");
             }
         }
+        public int ValidPhoneNumber()
+        {
+            int phoneNumber = 0;
+            bool validNumber = false;
+            bool validInput = false;
+            while (!validNumber)
+            {
+                Console.Write("Zadejte telefonni cislo (bez mezer): +420");
+                string input = Console.ReadLine().Trim();
+                if (input.Length == 9)
+                {
+                    validInput = int.TryParse(input, out phoneNumber);
+                }
+                if (validInput)
+                    validNumber = true;
+                else
+                {
+                    Console.WriteLine("Telefonni cislo neni ve spravnem tvaru.");
+                }
+            }
+            return phoneNumber;
+        }
+        public int ValidAge()
+        {
+            int age = 0;
+            bool validAge = false;
+            bool validInput = false;
+            while (!validAge)
+            {
+                Console.Write("Zadejte svuj vek: ");
+                string input = Console.ReadLine().Trim();
+                validInput = int.TryParse(input, out age);
+                if (validInput)
+                    validAge = true;
+                else
+                {
+                    Console.WriteLine("Vek neni ve spravnem tvaru");
+                }
+            }
+            return age;
+        }
+
     }
 }
