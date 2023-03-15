@@ -21,7 +21,8 @@ namespace Insurence
             Console.WriteLine();
             Console.WriteLine("1 - Pridani noveho pojistence");
             Console.WriteLine("2 - Zobrazeni vsech pojistencu");
-            Console.WriteLine("3 - Vyhledani pojistence/uprava");
+            Console.WriteLine("3 - Vyhledani pojistence/uprava/odstraneni pojistence");
+            Console.WriteLine("4 - Ukonceni evidence pojisteni");
             Console.WriteLine();
             Console.Write("Volba: ");
 
@@ -52,6 +53,7 @@ namespace Insurence
             {
                 Console.WriteLine(user);
             }
+            Console.WriteLine();
             Console.WriteLine("MENU - enter");
             Console.ReadKey();
         }
@@ -77,6 +79,7 @@ namespace Insurence
                 {
                     if ((user.FirstName == fName) && (user.LastName == lName))
                     {
+                        Console.WriteLine();
                         Console.WriteLine(user);
                         userFound = true;
                         userToEdit = user;
@@ -86,18 +89,22 @@ namespace Insurence
                 if (!userFound) //uzivatel nebyl nalezen podle jmena
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Uzivatel se zadanym jmenem neexistuje.");
+                    Console.WriteLine("Pojistenec se zadanym jmenem neexistuje.");
                 }
-                EditPhoneNumber(userToEdit); //volba zmeny cisla
-
+                else
+                {
+                    EditPhoneNumber(userToEdit); //zmena cisla
+                    DeleteUser(userToEdit); //smazani pojistence
+                }
+                    
                 Console.WriteLine();
                 Console.Write("Chcete vyhledat znovu pojistenece? ano/ne: ");
-                string choice2 = Console.ReadLine();
-                if (choice2 == "ne")
+                string mainMenu = Console.ReadLine();
+                if (mainMenu == "ne")
                     exit = true;
             }
         }
-        public void EditPhoneNumber(User user)
+        public void EditPhoneNumber(User user) //zmena tel. cisla
         {
             Console.WriteLine();
             Console.Write("Chcete zmenit telefonni cislo? ano/ne: ");
@@ -109,7 +116,17 @@ namespace Insurence
                 user.PhoneNumber = newPhoneNumber;
                 Console.WriteLine("Telefonni cislo bylo zmeneno.");
             }
-
+        }
+        public void DeleteUser(User user) //smazani pojistence
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Chcete pojistence - {user.FirstName} {user.LastName} - odstranit? ano/ne");
+            string choice = Console.ReadLine();
+            if (choice == "ano")
+            {
+                Users.Remove(user);
+                Console.WriteLine("Pojistenec byl odstranen.");
+            }
         }
     }
 }

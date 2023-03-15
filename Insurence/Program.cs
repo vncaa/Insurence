@@ -20,5 +20,11 @@ while (running)
         case "3":
             pojisteni.SearchUser();
             break;
+        case "4":
+            running = false;
+            break;
+        default:
+            Console.WriteLine("Nespravna volba. Zkuste prosim znovu.");
+            break;
     }
 }
