@@ -17,5 +17,8 @@ while (running)
         case "2":
             pojisteni.ShowAllUsers();
             break;
+        case "3":
+            pojisteni.SearchUser();
+            break;
     }
 }

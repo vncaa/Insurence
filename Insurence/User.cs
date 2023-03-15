@@ -22,7 +22,7 @@ namespace Insurence
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName} - {Age} / {PhoneNumber}";
+            return $"{FirstName} {LastName} - vek: {Age}, tel. cislo: {PhoneNumber}";
         }
     }
 }
