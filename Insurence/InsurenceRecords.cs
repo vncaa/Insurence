@@ -6,7 +6,7 @@ namespace Insurence
 {
     internal class InsurenceRecords
     {
-        public List<User> Users { get; set; }       //male-velke pism u jmena, cisla ve jmenu, cislo zmena
+        public List<User> Users { get; set; }       //male-velke pism u jmena //cisla ve jmenu
         public InsurenceRecords()
         {
             Users = new List<User>();
@@ -34,9 +34,9 @@ namespace Insurence
 
             Console.Clear();
             Console.Write("Zadejte sve krestni jmeno: ");
-            string firstName = Console.ReadLine();
+            string firstName = Console.ReadLine().ToUpper();
             Console.Write("Zadejte sve prijmeni: ");
-            string lastName = Console.ReadLine();
+            string lastName = Console.ReadLine().ToUpper();
             int age = ValidAge(); //funkce pro overeni spravnosti veku
             int phoneNumber = ValidPhoneNumber(); //funkce pro overeni spravnosti tel. cisla
             
@@ -70,9 +70,9 @@ namespace Insurence
                 Console.Clear();
                 Console.WriteLine("Zadejte detaily o hledanem pojistenci.");
                 Console.Write("Krestni jmeno: ");
-                string fName = Console.ReadLine();
+                string fName = Console.ReadLine().ToUpper();
                 Console.Write("Prijmeni: ");
-                string lName = Console.ReadLine();
+                string lName = Console.ReadLine().ToUpper();
 
                 bool userFound = false;
 
@@ -113,8 +113,9 @@ namespace Insurence
             if(choice == "ano")
             {
                 ValidPhoneNumber();
+                Console.WriteLine("Telefonni cislo bylo zmeneno.");
             }
-            Console.WriteLine("Telefonni cislo bylo zmeneno.");
+            
         }
         public void DeleteUser(User user) //smazani pojistence
         {
