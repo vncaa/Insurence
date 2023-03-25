@@ -1,24 +1,24 @@
 ﻿using Insurence;
 
-InsurenceRecords pojisteni = new InsurenceRecords();
+InsurenceRecords insurence = new InsurenceRecords();
 
 bool running = true;
 
 while (running)
 {
-    pojisteni.ShowMenu();
+    insurence.ShowMenu();
 
     string choice = Console.ReadLine();
     switch (choice)
     {
         case "1":
-            pojisteni.AddNewUser();
+            insurence.AddNewUser();
             break;
         case "2":
-            pojisteni.ShowAllUsers();
+            insurence.ShowAllUsers();
             break;
         case "3":
-            pojisteni.SearchUser();
+            insurence.SearchUser();
             break;
         case "4":
             running = false;

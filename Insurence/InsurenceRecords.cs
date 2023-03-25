@@ -6,7 +6,7 @@ namespace Insurence
 {
     internal class InsurenceRecords
     {
-        public List<User> Users { get; set; }
+        public List<User> Users { get; set; }       //male-velke pism u jmena, cisla ve jmenu, cislo zmena
         public InsurenceRecords()
         {
             Users = new List<User>();
@@ -58,6 +58,7 @@ namespace Insurence
             Console.WriteLine("MENU - enter");
             Console.ReadKey();
         }
+
         //vyhledani uzivatele podle jmena a prijmeni
         public void SearchUser()
         {
